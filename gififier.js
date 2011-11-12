@@ -9,7 +9,8 @@ function Gififier(params) {
   // The frames
   this.frames = [];
   
-  this.interval = null;
+  // this.interval = null;
+  this.playing = false;
           
   this.el = params.el;
   
@@ -42,10 +43,10 @@ Gififier.prototype.get_frames = function() {
 
 Gififier.prototype.hide_frames = function() {
   for (var k in this.frames) {
-    
     var v = this.frames[k];
+    
     if (typeof v != "object") return;
-    // console.log(v);
+
     v.style.display = "none";
   }
 };
@@ -57,12 +58,11 @@ Gififier.prototype.show_current_frame = function() {
 Gififier.prototype.setup_interval = function() {
   var self = this;
 
-  // console.log(this.timer);
-  // this.interval = setInterval(function() {
-  //   self.next_frame();
-  // }, this.options.speed);
-  (function animloop(){
-    requestAnimFrame(animloop, self.el, self.options.speed);
+  (function animloop() {
+    if (!self.playing)
+      return false;
+      
+      requestAnimFrame(animloop, self.el, self.options.speed);
     
     if ((new Date).getTime() > (self.timer + self.options.speed)) {
       self.timer = (new Date).getTime();
@@ -91,19 +91,18 @@ Gififier.prototype.previous_frame = function() {
 
 // Play
 Gififier.prototype.play = function() {
-  if (this.interval) return;
+  this.playing = true;
   this.setup_interval();
 };
 
 // Pause
 Gififier.prototype.pause = function() {
   // Toggle play/pause
-  if (!this.interval) {
+  if (!this.playing) {
     this.play();
     return;
   }
-  clearInterval(this.interval);
-  this.interval = null;
+  this.playing = false;
 };   
 
 // Stop - pause and go to first frame

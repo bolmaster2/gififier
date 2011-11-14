@@ -1,17 +1,20 @@
+// Gififier "gifify" your images from a html list!
 function Gififier(params) {
   var self = this;
+  
   // The current frame index
   this.current_frame = 0;
   
+  // Timer
   this.timer = (new Date).getTime();
 
-  
   // The frames
   this.frames = [];
   
-  // this.interval = null;
+  // Is it playing?
   this.playing = false;
-          
+  
+  // The DOM element
   this.el = params.el;
   
   // Default options
@@ -37,10 +40,13 @@ function Gififier(params) {
 
 // PRIVATE
 
+// Get LI elements from this.el
 Gififier.prototype.get_frames = function() {
   return this.frames = this.el.getElementsByTagName("li");
 };
 
+// Hide all frames
+// Loop through this.frames and set display none on the images
 Gififier.prototype.hide_frames = function() {
   for (var k in this.frames) {
     var v = this.frames[k];
@@ -51,21 +57,31 @@ Gififier.prototype.hide_frames = function() {
   }
 };
 
+// Show current frame
 Gififier.prototype.show_current_frame = function() {
   this.frames[this.current_frame].style.display = "block";
 };
 
+// Setup the interval with request animation frame
 Gififier.prototype.setup_interval = function() {
+  // Reference to object
   var self = this;
 
+  // Animation loop function
   (function animloop() {
+    // If it's not playing - don't go any further
     if (!self.playing)
       return false;
       
-      requestAnimFrame(animloop, self.el, self.options.speed);
+    // Call the animloop with the cross-browser requestAnimFrame
+    requestAnimFrame(animloop, self.el, self.options.speed);
     
+    // Is it time to go to the next frame? 
+    // (is the current time bigger than when we where here last time plus the speed)
     if ((new Date).getTime() > (self.timer + self.options.speed)) {
+      // update the timer with the current time
       self.timer = (new Date).getTime();
+      // go to next frame!
       self.next_frame();
     }    
   })();
@@ -80,12 +96,6 @@ Gififier.prototype.next_frame = function() {
   this.hide_frames();
   this.show_current_frame();
 };
-
-Gififier.prototype.previous_frame = function() {
-  
-};
-
-
 
 // PUBLIC API
 
@@ -116,6 +126,7 @@ Gififier.prototype.reset = function() {
   this.current_frame = 0;
 };
 
+// Paul Irish requestAnimFrame - http://paulirish.com/2011/requestanimationframe-for-smart-animating/
 window.requestAnimFrame = (function(){
 return  window.requestAnimationFrame       || 
         window.webkitRequestAnimationFrame || 

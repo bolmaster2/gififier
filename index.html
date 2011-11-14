@@ -4,65 +4,47 @@
     <meta charset="utf-8"/>
     <title>GIFIFIER</title>
     <style type="text/css">
-      #image-list {
-        
-      }
-      #image-list li {
-/*        display: none;*/
-      }
+
     </style>
   </head>
   <body>
-    <ul id="image-list-1">
-      <li><img src="img/dans/1.png" alt="" /></li>
-      <li><img src="img/dans/2.png" alt="" /></li>
-      <li><img src="img/dans/3.png" alt="" /></li>
-      <li><img src="img/dans/4.png" alt="" /></li>
-      <li><img src="img/dans/3.png" alt="" /></li>
-      <li><img src="img/dans/2.png" alt="" /></li>
-      <!-- <li><img src="img/4.png" alt="" /></li>
-      <li><img src="img/5.png" alt="" /></li>
-      <li><img src="img/6.png" alt="" /></li>
-      <li><img src="img/7.png" alt="" /></li>
-      <li><img src="img/8.png" alt="" /></li>
-      <li><img src="img/9.png" alt="" /></li>
-      <li><img src="img/10.png" alt="" /></li>
-      <li><img src="img/11.png" alt="" /></li>
-      <li><img src="img/12.png" alt="" /></li> -->
+    <ul id="image-list">
+      <li><img src="img/example-frames/1.jpg" alt="" /></li>
+      <li><img src="img/example-frames/2.jpg" alt="" /></li>
+      <li><img src="img/example-frames/3.jpg" alt="" /></li>
+      <li><img src="img/example-frames/4.jpg" alt="" /></li>
+      <li><img src="img/example-frames/5.jpg" alt="" /></li>
+      <li><img src="img/example-frames/6.jpg" alt="" /></li>
+      <li><img src="img/example-frames/7.jpg" alt="" /></li>
+      <li><img src="img/example-frames/8.jpg" alt="" /></li>
+      <li><img src="img/example-frames/9.jpg" alt="" /></li>
+      <li><img src="img/example-frames/8.jpg" alt="" /></li>
+      <li><img src="img/example-frames/7.jpg" alt="" /></li>
+      <li><img src="img/example-frames/6.jpg" alt="" /></li>
+      <li><img src="img/example-frames/5.jpg" alt="" /></li>
+      <li><img src="img/example-frames/4.jpg" alt="" /></li>
+      <li><img src="img/example-frames/3.jpg" alt="" /></li>
+      <li><img src="img/example-frames/2.jpg" alt="" /></li>
+
     </ul>
-    <!-- <ul id="image-list-2">
-      <li><img src="img/badkar/1.png" alt="" /></li>
-      <li><img src="img/badkar/2.png" alt="" /></li>
-      <li><img src="img/badkar/3.png" alt="" /></li>
-      <li><img src="img/badkar/4.png" alt="" /></li>
-      <li><img src="img/badkar/3.png" alt="" /></li>
-      <li><img src="img/badkar/2.png" alt="" /></li>
-      <li><img src="img/badkar/4.png" alt="" /></li>
-      <li><img src="img/badkar/5.png" alt="" /></li>
-      <li><img src="img/badkar/6.png" alt="" /></li>
-      <li><img src="img/badkar/7.png" alt="" /></li>
-      <li><img src="img/badkar/8.png" alt="" /></li>
-      <li><img src="img/badkar/9.png" alt="" /></li>
-    </ul> -->
-    
+
         
     <script src="gififier.js"></script>
     <script>
 
-      var g1 = new Gififier({
-        el: document.getElementById("image-list-1"),
-        speed: 400 // optional, default 400
+      var g = new Gififier({
+        el: document.getElementById("image-list"),
+        speed: 200 // optional, default 400
       });
 
       
       window.onload = function() {
-        g1.play();
-
+        g.play();
       };
 
-      document.getElementById("image-list-1").onclick = function(e) {
+      document.getElementById("image-list").onclick = function(e) {
         e.preventDefault();
-        g1.pause();
+        g.pause();
       };
       
       

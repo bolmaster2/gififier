@@ -1,6 +1,8 @@
 # Gififier
 It magically "gifify" your images into an animation. Just like a classic gif! How cool is that?
 
+## How to use it
+
 ``` html
 <ul id="image-list">
   <li><img src="img/example-frames/1.jpg" alt="" /></li>
@@ -27,3 +29,6 @@ and then include the js and run it:
   
 </script>
 ```
+
+## Demo
+[Really simple demo](http://blmstr.github.com/gififier/)
